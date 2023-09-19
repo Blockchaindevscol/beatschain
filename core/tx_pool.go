@@ -1,18 +1,18 @@
-// Copyright 2014 The go-beats Authors
-// This file is part of the go-beats library.
+// Copyright 2014 The go-Beats Authors
+// This file is part of the go-Beats library.
 //
-// The go-beats library is free software: you can redistribute it and/or modify
+// The go-Beats library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-beats library is distributed in the hope that it will be useful,
+// The go-Beats library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-beats library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-Beats library. If not, see <http://www.gnu.org/licenses/>.
 
 package core
 
@@ -253,7 +253,7 @@ type TxPool struct {
 
 	pending map[common.Address]*txList   // All currently processable transactions
 	queue   map[common.Address]*txList   // Queued but non-processable transactions
-	beats   map[common.Address]time.Time // Last heartbeat from each known account
+	Beats   map[common.Address]time.Time // Last heartbeat from each known account
 	all     *txLookup                    // All transactions to allow lookups
 	priced  *txPricedList                // All transactions sorted by price
 
@@ -288,7 +288,7 @@ func NewTxPool(config TxPoolConfig, chainconfig *params.ChainConfig, chain block
 		signer:          types.LatestSigner(chainconfig),
 		pending:         make(map[common.Address]*txList),
 		queue:           make(map[common.Address]*txList),
-		beats:           make(map[common.Address]time.Time),
+		Beats:           make(map[common.Address]time.Time),
 		all:             newTxLookup(),
 		chainHeadCh:     make(chan ChainHeadEvent, chainHeadChanSize),
 		reqResetCh:      make(chan *txpoolResetRequest),
@@ -387,7 +387,7 @@ func (pool *TxPool) loop() {
 					continue
 				}
 				// Any non-locals old enough should be removed
-				if time.Since(pool.beats[addr]) > pool.config.Lifetime {
+				if time.Since(pool.Beats[addr]) > pool.config.Lifetime {
 					list := pool.queue[addr].Flatten()
 					for _, tx := range list {
 						pool.removeTx(tx.Hash(), true)
@@ -729,7 +729,7 @@ func (pool *TxPool) add(tx *types.Transaction, local bool) (replaced bool, err e
 		log.Trace("Pooled new executable transaction", "hash", hash, "from", from, "to", tx.To())
 
 		// Successful promotion, bump the heartbeat
-		pool.beats[from] = time.Now()
+		pool.Beats[from] = time.Now()
 		return old != nil, nil
 	}
 	// New transaction isn't replacing a pending one, push into queue
@@ -786,8 +786,8 @@ func (pool *TxPool) enqueueTx(hash common.Hash, tx *types.Transaction, local boo
 		pool.priced.Put(tx, local)
 	}
 	// If we never record the heartbeat, do it right now.
-	if _, exist := pool.beats[from]; !exist {
-		pool.beats[from] = time.Now()
+	if _, exist := pool.Beats[from]; !exist {
+		pool.Beats[from] = time.Now()
 	}
 	return old != nil, nil
 }
@@ -836,7 +836,7 @@ func (pool *TxPool) promoteTx(addr common.Address, hash common.Hash, tx *types.T
 	pool.pendingNonces.set(addr, tx.Nonce()+1)
 
 	// Successful promotion, bump the heartbeat
-	pool.beats[addr] = time.Now()
+	pool.Beats[addr] = time.Now()
 	return true
 }
 
@@ -1031,7 +1031,7 @@ func (pool *TxPool) removeTx(hash common.Hash, outofbound bool) {
 		}
 		if future.Empty() {
 			delete(pool.queue, addr)
-			delete(pool.beats, addr)
+			delete(pool.Beats, addr)
 		}
 	}
 }
@@ -1366,7 +1366,7 @@ func (pool *TxPool) promoteExecutables(accounts []common.Address) []*types.Trans
 		// Delete the entire queue entry if it became empty.
 		if list.Empty() {
 			delete(pool.queue, addr)
-			delete(pool.beats, addr)
+			delete(pool.Beats, addr)
 		}
 	}
 	return promoted
@@ -1473,7 +1473,7 @@ func (pool *TxPool) truncateQueue() {
 	addresses := make(addressesByHeartbeat, 0, len(pool.queue))
 	for addr := range pool.queue {
 		if !pool.locals.contains(addr) { // don't drop locals
-			addresses = append(addresses, addressByHeartbeat{addr, pool.beats[addr]})
+			addresses = append(addresses, addressByHeartbeat{addr, pool.Beats[addr]})
 		}
 	}
 	sort.Sort(addresses)

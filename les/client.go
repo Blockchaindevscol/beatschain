@@ -1,20 +1,20 @@
-// Copyright 2016 The go-beats Authors
-// This file is part of the go-beats library.
+// Copyright 2016 The go-Beats Authors
+// This file is part of the go-Beats library.
 //
-// The go-beats library is free software: you can redistribute it and/or modify
+// The go-Beats library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-beats library is distributed in the hope that it will be useful,
+// The go-Beats library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-beats library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-Beats library. If not, see <http://www.gnu.org/licenses/>.
 
-// Package les implements the Light beats Subprotocol.
+// Package les implements the Light Beats Subprotocol.
 package les
 
 import (
@@ -282,7 +282,7 @@ func (s *LightDummyAPI) Mining() bool {
 	return false
 }
 
-// APIs returns the collection of RPC services the beats package offers.
+// APIs returns the collection of RPC services the Beats package offers.
 // NOTE, some of these services probably need to be moved to somewhere else.
 func (s *LightEthereum) APIs() []rpc.API {
 	apis := ethapi.GetAPIs(s.ApiBackend)
@@ -344,7 +344,7 @@ func (s *LightEthereum) Protocols() []p2p.Protocol {
 }
 
 // Start implements node.Lifecycle, starting all internal goroutines needed by the
-// light beats protocol implementation.
+// light Beats protocol implementation.
 func (s *LightEthereum) Start() error {
 	log.Warn("Light client mode is an experimental feature")
 
@@ -367,7 +367,7 @@ func (s *LightEthereum) Start() error {
 }
 
 // Stop implements node.Lifecycle, terminating all internal goroutines used by the
-// beats protocol.
+// Beats protocol.
 func (s *LightEthereum) Stop() error {
 	close(s.closeCh)
 	s.serverPool.Stop()
@@ -387,6 +387,6 @@ func (s *LightEthereum) Stop() error {
 	s.chainDb.Close()
 	s.lesDb.Close()
 	s.wg.Wait()
-	log.Info("Light beats stopped")
+	log.Info("Light Beats stopped")
 	return nil
 }

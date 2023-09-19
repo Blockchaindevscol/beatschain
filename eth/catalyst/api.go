@@ -1,18 +1,18 @@
-// Copyright 2020 The go-beats Authors
-// This file is part of the go-beats library.
+// Copyright 2020 The go-Beats Authors
+// This file is part of the go-Beats library.
 //
-// The go-beats library is free software: you can redistribute it and/or modify
+// The go-Beats library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-beats library is distributed in the hope that it will be useful,
+// The go-Beats library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-beats library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-Beats library. If not, see <http://www.gnu.org/licenses/>.
 
 // Package catalyst implements the temporary eth1/eth2 RPC integration.
 package catalyst
@@ -37,7 +37,7 @@ import (
 )
 
 // Register adds catalyst APIs to the node.
-func Register(stack *node.Node, backend *eth.beats) error {
+func Register(stack *node.Node, backend *eth.Beats) error {
 	chainconfig := backend.BlockChain().Config()
 	if chainconfig.TerminalTotalDifficulty == nil {
 		return errors.New("catalyst started without valid total difficulty")
@@ -56,10 +56,10 @@ func Register(stack *node.Node, backend *eth.beats) error {
 }
 
 type consensusAPI struct {
-	eth *eth.beats
+	eth *eth.Beats
 }
 
-func newConsensusAPI(eth *eth.beats) *consensusAPI {
+func newConsensusAPI(eth *eth.Beats) *consensusAPI {
 	return &consensusAPI{eth: eth}
 }
 

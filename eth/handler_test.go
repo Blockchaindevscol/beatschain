@@ -1,18 +1,18 @@
-// Copyright 2015 The go-beats Authors
-// This file is part of the go-beats library.
+// Copyright 2015 The go-Beats Authors
+// This file is part of the go-Beats library.
 //
-// The go-beats library is free software: you can redistribute it and/or modify
+// The go-Beats library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-beats library is distributed in the hope that it will be useful,
+// The go-Beats library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-beats library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-Beats library. If not, see <http://www.gnu.org/licenses/>.
 
 package eth
 
@@ -38,7 +38,7 @@ var (
 	// testKey is a private key to use for funding a tester account.
 	testKey, _ = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
 
-	// testAddr is the beats address of the tester account.
+	// testAddr is the Beats address of the tester account.
 	testAddr = crypto.PubkeyToAddress(testKey.PublicKey)
 )
 
@@ -112,7 +112,7 @@ func (p *testTxPool) SubscribeNewTxsEvent(ch chan<- core.NewTxsEvent) event.Subs
 	return p.txFeed.Subscribe(ch)
 }
 
-// testHandler is a live implementation of the beats protocol handler, just
+// testHandler is a live implementation of the Beats protocol handler, just
 // preinitialized with some sane testing defaults and the transaction pool mocked
 // out.
 type testHandler struct {

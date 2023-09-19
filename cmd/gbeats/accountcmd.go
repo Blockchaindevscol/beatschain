@@ -1,18 +1,18 @@
-// Copyright 2016 The go-beats Authors
-// This file is part of go-beats.
+// Copyright 2016 The go-Beats Authors
+// This file is part of go-Beats.
 //
-// go-beats is free software: you can redistribute it and/or modify
+// go-Beats is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-beats is distributed in the hope that it will be useful,
+// go-Beats is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-beats. If not, see <http://www.gnu.org/licenses/>.
+// along with go-Beats. If not, see <http://www.gnu.org/licenses/>.
 
 package main
 
@@ -31,7 +31,7 @@ import (
 var (
 	walletCommand = cli.Command{
 		Name:      "wallet",
-		Usage:     "Manage beats presale wallets",
+		Usage:     "Manage Beats presale wallets",
 		ArgsUsage: "",
 		Category:  "ACCOUNT COMMANDS",
 		Description: `
@@ -44,7 +44,7 @@ passwordfile as argument containing the wallet password in plaintext.`,
 			{
 
 				Name:      "import",
-				Usage:     "Import beats presale wallet",
+				Usage:     "Import Beats presale wallet",
 				ArgsUsage: "<keyFile>",
 				Action:    utils.MigrateFlags(importWallet),
 				Category:  "ACCOUNT COMMANDS",
@@ -85,7 +85,7 @@ Note that exporting your key in unencrypted format is NOT supported.
 
 Keys are stored under <DATADIR>/keystore.
 It is safe to transfer the entire directory or the individual keys therein
-between beats nodes by simply copying.
+between Beats nodes by simply copying.
 
 Make sure you backup your keys regularly.`,
 		Subcommands: []cli.Command{
@@ -182,7 +182,7 @@ For non-interactive use the password can be specified with the -password flag:
     gbeats account import [options] <keyfile>
 
 Note:
-As you can directly copy your encrypted accounts to another beats instance,
+As you can directly copy your encrypted accounts to another Beats instance,
 this import mechanism is not needed when you transfer an account between
 nodes.
 `,

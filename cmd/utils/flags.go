@@ -1,20 +1,20 @@
-// Copyright 2015 The go-beats Authors
-// This file is part of go-beats.
+// Copyright 2015 The go-Beats Authors
+// This file is part of go-Beats.
 //
-// go-beats is free software: you can redistribute it and/or modify
+// go-Beats is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-beats is distributed in the hope that it will be useful,
+// go-Beats is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-beats. If not, see <http://www.gnu.org/licenses/>.
+// along with go-Beats. If not, see <http://www.gnu.org/licenses/>.
 
-// Package utils contains internal helper functions for go-beats commands.
+// Package utils contains internal helper functions for go-Beats commands.
 package utils
 
 import (
@@ -141,7 +141,7 @@ var (
 	}
 	MainnetFlag = cli.BoolFlag{
 		Name:  "mainnet",
-		Usage: "beats mainnet",
+		Usage: "Beats mainnet",
 	}
 	GoerliFlag = cli.BoolFlag{
 		Name:  "goerli",
@@ -1697,21 +1697,21 @@ func SetDNSDiscoveryDefaults(cfg *ethconfig.Config, genesis common.Hash) {
 	}
 }
 
-// RegisterEthService adds an beats client to the stack.
+// RegisterEthService adds an Beats client to the stack.
 // The second return value is the full node instance, which may be nil if the
 // node is running as a light client.
-func RegisterEthService(stack *node.Node, cfg *ethconfig.Config) (ethapi.Backend, *eth.beats) {
+func RegisterEthService(stack *node.Node, cfg *ethconfig.Config) (ethapi.Backend, *eth.Beats) {
 	if cfg.SyncMode == downloader.LightSync {
 		backend, err := les.New(stack, cfg)
 		if err != nil {
-			Fatalf("Failed to register the beats service: %v", err)
+			Fatalf("Failed to register the Beats service: %v", err)
 		}
 		stack.RegisterAPIs(tracers.APIs(backend.ApiBackend))
 		return backend.ApiBackend, nil
 	}
 	backend, err := eth.New(stack, cfg)
 	if err != nil {
-		Fatalf("Failed to register the beats service: %v", err)
+		Fatalf("Failed to register the Beats service: %v", err)
 	}
 	if cfg.LightServ > 0 {
 		_, err := les.NewLesServer(stack, backend, cfg)
@@ -1723,11 +1723,11 @@ func RegisterEthService(stack *node.Node, cfg *ethconfig.Config) (ethapi.Backend
 	return backend.APIBackend, backend
 }
 
-// RegisterEthStatsService configures the beats Stats daemon and adds it to
+// RegisterEthStatsService configures the Beats Stats daemon and adds it to
 // the given node.
 func RegisterEthStatsService(stack *node.Node, backend ethapi.Backend, url string) {
 	if err := ethstats.New(stack, backend, backend.Engine(), url); err != nil {
-		Fatalf("Failed to register the beats Stats service: %v", err)
+		Fatalf("Failed to register the Beats Stats service: %v", err)
 	}
 }
 

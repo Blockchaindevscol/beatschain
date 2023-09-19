@@ -1,18 +1,18 @@
-// Copyright 2015 The go-beats Authors
-// This file is part of the go-beats library.
+// Copyright 2015 The go-Beats Authors
+// This file is part of the go-Beats library.
 //
-// The go-beats library is free software: you can redistribute it and/or modify
+// The go-Beats library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-beats library is distributed in the hope that it will be useful,
+// The go-Beats library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-beats library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-Beats library. If not, see <http://www.gnu.org/licenses/>.
 
 package eth
 
@@ -41,14 +41,14 @@ import (
 	"github.com/Blockchaindevscol/beatschain/trie"
 )
 
-// PublicEthereumAPI provides an API to access beats full node-related
+// PublicEthereumAPI provides an API to access Beats full node-related
 // information.
 type PublicEthereumAPI struct {
-	e *beats
+	e *Beats
 }
 
-// NewPublicEthereumAPI creates a new beats protocol API for full nodes.
-func NewPublicEthereumAPI(e *beats) *PublicEthereumAPI {
+// NewPublicEthereumAPI creates a new Beats protocol API for full nodes.
+func NewPublicEthereumAPI(e *Beats) *PublicEthereumAPI {
 	return &PublicEthereumAPI{e}
 }
 
@@ -70,11 +70,11 @@ func (api *PublicEthereumAPI) Hashrate() hexutil.Uint64 {
 // PublicMinerAPI provides an API to control the miner.
 // It offers only methods that operate on data that pose no security risk when it is publicly accessible.
 type PublicMinerAPI struct {
-	e *beats
+	e *Beats
 }
 
 // NewPublicMinerAPI create a new PublicMinerAPI instance.
-func NewPublicMinerAPI(e *beats) *PublicMinerAPI {
+func NewPublicMinerAPI(e *Beats) *PublicMinerAPI {
 	return &PublicMinerAPI{e}
 }
 
@@ -86,11 +86,11 @@ func (api *PublicMinerAPI) Mining() bool {
 // PrivateMinerAPI provides private RPC methods to control the miner.
 // These methods can be abused by external users and must be considered insecure for use by untrusted users.
 type PrivateMinerAPI struct {
-	e *beats
+	e *Beats
 }
 
 // NewPrivateMinerAPI create a new RPC service which controls the miner of this node.
-func NewPrivateMinerAPI(e *beats) *PrivateMinerAPI {
+func NewPrivateMinerAPI(e *Beats) *PrivateMinerAPI {
 	return &PrivateMinerAPI{e: e}
 }
 
@@ -147,15 +147,15 @@ func (api *PrivateMinerAPI) SetRecommitInterval(interval int) {
 	api.e.Miner().SetRecommitInterval(time.Duration(interval) * time.Millisecond)
 }
 
-// PrivateAdminAPI is the collection of beats full node-related APIs
+// PrivateAdminAPI is the collection of Beats full node-related APIs
 // exposed over the private admin endpoint.
 type PrivateAdminAPI struct {
-	eth *beats
+	eth *Beats
 }
 
 // NewPrivateAdminAPI creates a new API definition for the full node private
-// admin methods of the beats service.
-func NewPrivateAdminAPI(eth *beats) *PrivateAdminAPI {
+// admin methods of the Beats service.
+func NewPrivateAdminAPI(eth *Beats) *PrivateAdminAPI {
 	return &PrivateAdminAPI{eth: eth}
 }
 
@@ -257,15 +257,15 @@ func (api *PrivateAdminAPI) ImportChain(file string) (bool, error) {
 	return true, nil
 }
 
-// PublicDebugAPI is the collection of beats full node APIs exposed
+// PublicDebugAPI is the collection of Beats full node APIs exposed
 // over the public debugging endpoint.
 type PublicDebugAPI struct {
-	eth *beats
+	eth *Beats
 }
 
 // NewPublicDebugAPI creates a new API definition for the full node-
-// related public debug methods of the beats service.
-func NewPublicDebugAPI(eth *beats) *PublicDebugAPI {
+// related public debug methods of the Beats service.
+func NewPublicDebugAPI(eth *Beats) *PublicDebugAPI {
 	return &PublicDebugAPI{eth: eth}
 }
 
@@ -298,15 +298,15 @@ func (api *PublicDebugAPI) DumpBlock(blockNr rpc.BlockNumber) (state.Dump, error
 	return stateDb.RawDump(opts), nil
 }
 
-// PrivateDebugAPI is the collection of beats full node APIs exposed over
+// PrivateDebugAPI is the collection of Beats full node APIs exposed over
 // the private debugging endpoint.
 type PrivateDebugAPI struct {
-	eth *beats
+	eth *Beats
 }
 
 // NewPrivateDebugAPI creates a new API definition for the full node-related
-// private debug methods of the beats service.
-func NewPrivateDebugAPI(eth *beats) *PrivateDebugAPI {
+// private debug methods of the Beats service.
+func NewPrivateDebugAPI(eth *Beats) *PrivateDebugAPI {
 	return &PrivateDebugAPI{eth: eth}
 }
 

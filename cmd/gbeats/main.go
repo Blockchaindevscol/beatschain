@@ -1,20 +1,20 @@
-// Copyright 2014 The go-beats Authors
-// This file is part of go-beats.
+// Copyright 2014 The go-Beats Authors
+// This file is part of go-Beats.
 //
-// go-beats is free software: you can redistribute it and/or modify
+// go-Beats is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-beats is distributed in the hope that it will be useful,
+// go-Beats is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-beats. If not, see <http://www.gnu.org/licenses/>.
+// along with go-Beats. If not, see <http://www.gnu.org/licenses/>.
 
-// gbeats is the official command-line client for beats.
+// gbeats is the official command-line client for Beats.
 package main
 
 import (
@@ -55,7 +55,7 @@ var (
 	gitCommit = ""
 	gitDate   = ""
 	// The app that holds all commands and flags.
-	app = flags.NewApp(gitCommit, gitDate, "the go-beats command line interface")
+	app = flags.NewApp(gitCommit, gitDate, "the go-Beats command line interface")
 	// flags that configure the node
 	nodeFlags = []cli.Flag{
 		utils.IdentityFlag,
@@ -205,7 +205,7 @@ func init() {
 	// Initialize the CLI app and start Geth
 	app.Action = gbeats
 	app.HideVersion = true // we have a command to print the version
-	app.Copyright = "Copyright 2013-2021 The go-beats Authors"
+	app.Copyright = "Copyright 2013-2021 The go-Beats Authors"
 	app.Commands = []cli.Command{
 		// See chaincmd.go:
 		initCommand,
@@ -281,7 +281,7 @@ func prepare(ctx *cli.Context) {
 		log.Info("Starting gbeatsin ephemeral dev mode...")
 
 	case !ctx.GlobalIsSet(utils.NetworkIdFlag.Name):
-		log.Info("Starting gbeatson beats mainnet...")
+		log.Info("Starting gbeatson Beats mainnet...")
 	}
 	// If we're a full node on mainnet without --cache specified, bump default cache allowance
 	if ctx.GlobalString(utils.SyncModeFlag.Name) != "light" && !ctx.GlobalIsSet(utils.CacheFlag.Name) && !ctx.GlobalIsSet(utils.NetworkIdFlag.Name) {
@@ -404,13 +404,13 @@ func startNode(ctx *cli.Context, stack *node.Node, backend ethapi.Backend) {
 
 	// Start auxiliary services if enabled
 	if ctx.GlobalBool(utils.MiningEnabledFlag.Name) || ctx.GlobalBool(utils.DeveloperFlag.Name) {
-		// Mining only makes sense if a full beats node is running
+		// Mining only makes sense if a full Beats node is running
 		if ctx.GlobalString(utils.SyncModeFlag.Name) == "light" {
 			utils.Fatalf("Light clients do not support mining")
 		}
 		ethBackend, ok := backend.(*eth.EthAPIBackend)
 		if !ok {
-			utils.Fatalf("beats service not running")
+			utils.Fatalf("Beats service not running")
 		}
 		// Set the gas price to the limits from the CLI and start mining
 		gasprice := utils.GlobalBig(ctx, utils.MinerGasPriceFlag.Name)

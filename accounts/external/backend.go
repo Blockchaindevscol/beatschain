@@ -1,18 +1,18 @@
-// Copyright 2019 The go-beats Authors
-// This file is part of the go-beats library.
+// Copyright 2019 The go-Beats Authors
+// This file is part of the go-Beats library.
 //
-// The go-beats library is free software: you can redistribute it and/or modify
+// The go-Beats library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-beats library is distributed in the hope that it will be useful,
+// The go-Beats library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-beats library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-Beats library. If not, see <http://www.gnu.org/licenses/>.
 
 package external
 
@@ -185,7 +185,7 @@ func (api *ExternalSigner) SignText(account accounts.Account, text []byte) ([]by
 	if signature[64] == 27 || signature[64] == 28 {
 		// If clef is used as a backend, it may already have transformed
 		// the signature to ethereum-type signature.
-		signature[64] -= 27 // Transform V from beats-legacy to 0/1
+		signature[64] -= 27 // Transform V from Beats-legacy to 0/1
 	}
 	return signature, nil
 }

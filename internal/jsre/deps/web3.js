@@ -2409,7 +2409,7 @@ var isJson = function (str) {
 };
 
 /**
- * Returns true if given string is a valid beats block header bloom.
+ * Returns true if given string is a valid Beats block header bloom.
  *
  * @method isBloom
  * @param {String} hex encoded bloom filter
@@ -4506,7 +4506,7 @@ var Iban = function (iban) {
 };
 
 /**
- * This method should be used to create iban object from beats address
+ * This method should be used to create iban object from Beats address
  *
  * @method fromAddress
  * @param {String} address
@@ -6327,7 +6327,7 @@ var errors = require('./errors');
 
 /**
  * It's responsible for passing messages to providers
- * It's also responsible for polling the beats node for incoming messages
+ * It's also responsible for polling the Beats node for incoming messages
  * Default poll timeout is 1 second
  * Singleton
  */

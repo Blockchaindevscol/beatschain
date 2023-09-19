@@ -1,20 +1,20 @@
-// Copyright 2014 The go-beats Authors
-// This file is part of the go-beats library.
+// Copyright 2014 The go-Beats Authors
+// This file is part of the go-Beats library.
 //
-// The go-beats library is free software: you can redistribute it and/or modify
+// The go-Beats library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-beats library is distributed in the hope that it will be useful,
+// The go-Beats library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-beats library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-Beats library. If not, see <http://www.gnu.org/licenses/>.
 
-// Package eth implements the beats protocol.
+// Package eth implements the Beats protocol.
 package eth
 
 import (
@@ -61,8 +61,8 @@ import (
 // Deprecated: use ethconfig.Config instead.
 type Config = ethconfig.Config
 
-// beats implements the beats full node service.
-type beats struct {
+// Beats implements the Beats full node service.
+type Beats struct {
 	config *ethconfig.Config
 
 	// Handlers
@@ -97,12 +97,12 @@ type beats struct {
 	lock sync.RWMutex // Protects the variadic fields (e.g. gas price and etherbase)
 }
 
-// New creates a new beats object (including the
-// initialisation of the common beats object)
-func New(stack *node.Node, config *ethconfig.Config) (*beats, error) {
+// New creates a new Beats object (including the
+// initialisation of the common Beats object)
+func New(stack *node.Node, config *ethconfig.Config) (*Beats, error) {
 	// Ensure configuration values are compatible and sane
 	if config.SyncMode == downloader.LightSync {
-		return nil, errors.New("can't run eth.beats in light sync mode, use les.LightEthereum")
+		return nil, errors.New("can't run eth.Beats in light sync mode, use les.LightEthereum")
 	}
 	if !config.SyncMode.IsValid() {
 		return nil, fmt.Errorf("invalid sync mode %d", config.SyncMode)
@@ -126,7 +126,7 @@ func New(stack *node.Node, config *ethconfig.Config) (*beats, error) {
 	ethashConfig := config.Ethash
 	ethashConfig.NotifyFull = config.Miner.NotifyFull
 
-	// Assemble the beats object
+	// Assemble the Beats object
 	chainDb, err := stack.OpenDatabaseWithFreezer("chaindata", config.DatabaseCache, config.DatabaseHandles, config.DatabaseFreezer, "eth/db/chaindata/", false)
 	if err != nil {
 		return nil, err
@@ -140,7 +140,7 @@ func New(stack *node.Node, config *ethconfig.Config) (*beats, error) {
 	if err := pruner.RecoverPruning(stack.ResolvePath(""), chainDb, stack.ResolvePath(config.TrieCleanCacheJournal)); err != nil {
 		log.Error("Failed to recover state", "error", err)
 	}
-	eth := &beats{
+	eth := &Beats{
 		config:            config,
 		chainDb:           chainDb,
 		eventMux:          stack.EventMux(),
@@ -160,7 +160,7 @@ func New(stack *node.Node, config *ethconfig.Config) (*beats, error) {
 	if bcVersion != nil {
 		dbVer = fmt.Sprintf("%d", *bcVersion)
 	}
-	log.Info("Initialising beats protocol", "network", config.NetworkId, "dbversion", dbVer)
+	log.Info("Initialising Beats protocol", "network", config.NetworkId, "dbversion", dbVer)
 
 	if !config.SkipBcVersionCheck {
 		if bcVersion != nil && *bcVersion > core.BlockChainVersion {
@@ -289,9 +289,9 @@ func makeExtraData(extra []byte) []byte {
 	return extra
 }
 
-// APIs return the collection of RPC services the beats package offers.
+// APIs return the collection of RPC services the Beats package offers.
 // NOTE, some of these services probably need to be moved to somewhere else.
-func (s *beats) APIs() []rpc.API {
+func (s *Beats) APIs() []rpc.API {
 	apis := ethapi.GetAPIs(s.APIBackend)
 
 	// Append any APIs exposed explicitly by the consensus engine
@@ -346,11 +346,11 @@ func (s *beats) APIs() []rpc.API {
 	}...)
 }
 
-func (s *beats) ResetWithGenesisBlock(gb *types.Block) {
+func (s *Beats) ResetWithGenesisBlock(gb *types.Block) {
 	s.blockchain.ResetWithGenesisBlock(gb)
 }
 
-func (s *beats) Etherbase() (eb common.Address, err error) {
+func (s *Beats) Etherbase() (eb common.Address, err error) {
 	s.lock.RLock()
 	etherbase := s.etherbase
 	s.lock.RUnlock()
@@ -378,7 +378,7 @@ func (s *beats) Etherbase() (eb common.Address, err error) {
 //
 // We regard two types of accounts as local miner account: etherbase
 // and accounts specified via `txpool.locals` flag.
-func (s *beats) isLocalBlock(block *types.Block) bool {
+func (s *Beats) isLocalBlock(block *types.Block) bool {
 	author, err := s.engine.Author(block.Header())
 	if err != nil {
 		log.Warn("Failed to retrieve block author", "number", block.NumberU64(), "hash", block.Hash(), "err", err)
@@ -404,7 +404,7 @@ func (s *beats) isLocalBlock(block *types.Block) bool {
 // shouldPreserve checks whether we should preserve the given block
 // during the chain reorg depending on whether the author of block
 // is a local account.
-func (s *beats) shouldPreserve(block *types.Block) bool {
+func (s *Beats) shouldPreserve(block *types.Block) bool {
 	// The reason we need to disable the self-reorg preserving for clique
 	// is it can be probable to introduce a deadlock.
 	//
@@ -428,7 +428,7 @@ func (s *beats) shouldPreserve(block *types.Block) bool {
 }
 
 // SetEtherbase sets the mining reward address.
-func (s *beats) SetEtherbase(etherbase common.Address) {
+func (s *Beats) SetEtherbase(etherbase common.Address) {
 	s.lock.Lock()
 	s.etherbase = etherbase
 	s.lock.Unlock()
@@ -439,7 +439,7 @@ func (s *beats) SetEtherbase(etherbase common.Address) {
 // StartMining starts the miner with the given number of CPU threads. If mining
 // is already running, this method adjust the number of threads allowed to use
 // and updates the minimum price required by the transaction pool.
-func (s *beats) StartMining(threads int) error {
+func (s *Beats) StartMining(threads int) error {
 	// Update the thread count within the consensus engine
 	type threaded interface {
 		SetThreads(threads int)
@@ -484,7 +484,7 @@ func (s *beats) StartMining(threads int) error {
 
 // StopMining terminates the miner, both at the consensus engine level as well as
 // at the block creation level.
-func (s *beats) StopMining() {
+func (s *Beats) StopMining() {
 	// Update the thread count within the consensus engine
 	type threaded interface {
 		SetThreads(threads int)
@@ -496,24 +496,24 @@ func (s *beats) StopMining() {
 	s.miner.Stop()
 }
 
-func (s *beats) IsMining() bool      { return s.miner.Mining() }
-func (s *beats) Miner() *miner.Miner { return s.miner }
+func (s *Beats) IsMining() bool      { return s.miner.Mining() }
+func (s *Beats) Miner() *miner.Miner { return s.miner }
 
-func (s *beats) AccountManager() *accounts.Manager  { return s.accountManager }
-func (s *beats) BlockChain() *core.BlockChain       { return s.blockchain }
-func (s *beats) TxPool() *core.TxPool               { return s.txPool }
-func (s *beats) EventMux() *event.TypeMux           { return s.eventMux }
-func (s *beats) Engine() consensus.Engine           { return s.engine }
-func (s *beats) ChainDb() ethdb.Database            { return s.chainDb }
-func (s *beats) IsListening() bool                  { return true } // Always listening
-func (s *beats) Downloader() *downloader.Downloader { return s.handler.downloader }
-func (s *beats) Synced() bool                       { return atomic.LoadUint32(&s.handler.acceptTxs) == 1 }
-func (s *beats) ArchiveMode() bool                  { return s.config.NoPruning }
-func (s *beats) BloomIndexer() *core.ChainIndexer   { return s.bloomIndexer }
+func (s *Beats) AccountManager() *accounts.Manager  { return s.accountManager }
+func (s *Beats) BlockChain() *core.BlockChain       { return s.blockchain }
+func (s *Beats) TxPool() *core.TxPool               { return s.txPool }
+func (s *Beats) EventMux() *event.TypeMux           { return s.eventMux }
+func (s *Beats) Engine() consensus.Engine           { return s.engine }
+func (s *Beats) ChainDb() ethdb.Database            { return s.chainDb }
+func (s *Beats) IsListening() bool                  { return true } // Always listening
+func (s *Beats) Downloader() *downloader.Downloader { return s.handler.downloader }
+func (s *Beats) Synced() bool                       { return atomic.LoadUint32(&s.handler.acceptTxs) == 1 }
+func (s *Beats) ArchiveMode() bool                  { return s.config.NoPruning }
+func (s *Beats) BloomIndexer() *core.ChainIndexer   { return s.bloomIndexer }
 
 // Protocols returns all the currently configured
 // network protocols to start.
-func (s *beats) Protocols() []p2p.Protocol {
+func (s *Beats) Protocols() []p2p.Protocol {
 	protos := eth.MakeProtocols((*ethHandler)(s.handler), s.networkID, s.ethDialCandidates)
 	if s.config.SnapshotCache > 0 {
 		protos = append(protos, snap.MakeProtocols((*snapHandler)(s.handler), s.snapDialCandidates)...)
@@ -522,8 +522,8 @@ func (s *beats) Protocols() []p2p.Protocol {
 }
 
 // Start implements node.Lifecycle, starting all internal goroutines needed by the
-// beats protocol implementation.
-func (s *beats) Start() error {
+// Beats protocol implementation.
+func (s *Beats) Start() error {
 	eth.StartENRUpdater(s.blockchain, s.p2pServer.LocalNode())
 
 	// Start the bloom bits servicing goroutines
@@ -543,8 +543,8 @@ func (s *beats) Start() error {
 }
 
 // Stop implements node.Lifecycle, terminating all internal goroutines used by the
-// beats protocol.
-func (s *beats) Stop() error {
+// Beats protocol.
+func (s *Beats) Stop() error {
 	// Stop all the peer-related stuff first.
 	s.ethDialCandidates.Close()
 	s.snapDialCandidates.Close()

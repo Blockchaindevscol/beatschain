@@ -1,18 +1,18 @@
-// Copyright 2016 The go-beats Authors
-// This file is part of the go-beats library.
+// Copyright 2016 The go-Beats Authors
+// This file is part of the go-Beats library.
 //
-// The go-beats library is free software: you can redistribute it and/or modify
+// The go-Beats library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-beats library is distributed in the hope that it will be useful,
+// The go-Beats library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-beats library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-Beats library. If not, see <http://www.gnu.org/licenses/>.
 
 //go:build none
 // +build none
@@ -87,23 +87,23 @@ var (
 	debExecutables = []debExecutable{
 		{
 			BinaryName:  "abigen",
-			Description: "Source code generator to convert beats contract definitions into easy to use, compile-time type-safe Go packages.",
+			Description: "Source code generator to convert Beats contract definitions into easy to use, compile-time type-safe Go packages.",
 		},
 		{
 			BinaryName:  "bootnode",
-			Description: "beats bootnode.",
+			Description: "Beats bootnode.",
 		},
 		{
 			BinaryName:  "evm",
-			Description: "Developer utility version of the EVM (beats Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode.",
+			Description: "Developer utility version of the EVM (Beats Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode.",
 		},
 		{
 			BinaryName:  "gbeats",
-			Description: "beats CLI client.",
+			Description: "Beats CLI client.",
 		},
 		{
 			BinaryName:  "puppeth",
-			Description: "beats private network manager.",
+			Description: "Beats private network manager.",
 		},
 		{
 			BinaryName:  "rlpdump",
@@ -111,7 +111,7 @@ var (
 		},
 		{
 			BinaryName:  "clef",
-			Description: "beats account management tool.",
+			Description: "Beats account management tool.",
 		},
 	}
 
@@ -660,7 +660,7 @@ func doDebianSource(cmdline []string) {
 	// Create Debian packages and upload them.
 	for _, pkg := range debPackages {
 		for distro, goboot := range debDistroGoBoots {
-			// Prepare the debian package with the go-beats sources.
+			// Prepare the debian package with the go-Beats sources.
 			meta := newDebMetadata(distro, goboot, *signer, env, now, pkg.Name, pkg.Version, pkg.Executables)
 			pkgdir := stageDebianSource(*workdir, meta)
 
@@ -775,7 +775,7 @@ type debMetadata struct {
 
 	PackageName string
 
-	// go-beats version being built. Note that this
+	// go-Beats version being built. Note that this
 	// is not the debian package version. The package version
 	// is constructed by VersionString.
 	Version string
@@ -803,7 +803,7 @@ func (d debExecutable) Package() string {
 func newDebMetadata(distro, goboot, author string, env build.Environment, t time.Time, name string, version string, exes []debExecutable) debMetadata {
 	if author == "" {
 		// No signing key, use default author.
-		author = "beats Builds <fjl@ethereum.org>"
+		author = "Beats Builds <fjl@ethereum.org>"
 	}
 	return debMetadata{
 		GoBootPackage: goboot,

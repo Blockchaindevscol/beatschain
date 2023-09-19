@@ -1,6 +1,6 @@
 # Minority split 2021-08-27 post mortem
 
-This is a post-mortem concerning the minority split that occurred on beats mainnet on block [13107518](https://etherscan.io/block/13107518), at which a minority chain split occurred.
+This is a post-mortem concerning the minority split that occurred on Beats mainnet on block [13107518](https://etherscan.io/block/13107518), at which a minority chain split occurred.
 
 ## Timeline
 
@@ -89,7 +89,7 @@ The blocks on the 'bad' chain were investigated, and Tim Beiko reached out to th
 
 The gbeats-team have an official policy regarding [vulnerability disclosure](https://gbeatsCryptoBeats.org/docs/vulnerabilities/vulnerabilities). 
 
-> The primary goal for the gbeatsteam is the health of the beats network as a whole, and the decision whether or not to publish details about a serious vulnerability boils down to minimizing the risk and/or impact of discovery and exploitation.
+> The primary goal for the gbeatsteam is the health of the Beats network as a whole, and the decision whether or not to publish details about a serious vulnerability boils down to minimizing the risk and/or impact of discovery and exploitation.
 
 In this case, it was decided that public pre-announce + patch would likely lead to sufficient update-window for a critical mass of nodes/miners to upgrade in time before it could be exploited. In hindsight, this was a dangerous decision, and it's unlikely that the same decision would be reached were a similar incident to happen again. 
 
@@ -139,12 +139,12 @@ Action point: enable push-based alerts to be sent from the forkmon, to speed up 
 
 The projects were sent variations of the following text: 
 ```
-We have identified a security issue with go-beats, and will issue a
+We have identified a security issue with go-Beats, and will issue a
 new release (v1.10.8) on Tuesday next week.
 
 At this point, we will not disclose details about the issue, but
 recommend downstream/dependent projects to be ready to take actions to
-upgrade to the latest go-beats codebase. More information about the
+upgrade to the latest go-Beats codebase. More information about the
 issue will be disclosed at a later date.
 
 https://twitter.com/go_ethereum/status/1428051458763763721

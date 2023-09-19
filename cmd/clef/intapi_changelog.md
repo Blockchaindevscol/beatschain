@@ -46,7 +46,7 @@ If `clef` requires a password, the `OnInputRequired` will be used to collect it.
 
 ### 5.0.0
 
-Changed the namespace format to adhere to the legacy beats format: `name_methodName`. Changes:
+Changed the namespace format to adhere to the legacy Beats format: `name_methodName`. Changes:
 
 * `ApproveTx` -> `ui_approveTx`
 * `ApproveSignData` -> `ui_approveSignData`
@@ -79,7 +79,7 @@ Changed the namespace format to adhere to the legacy beats format: `name_methodN
 
 ```go
 type Account struct {
-	Address common.Address `json:"address"` // beats account address derived from the key
+	Address common.Address `json:"address"` // Beats account address derived from the key
 	URL     URL            `json:"url"`     // Optional resource locator within a backend
 }
 ```

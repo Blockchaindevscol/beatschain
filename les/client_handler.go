@@ -1,18 +1,18 @@
-// Copyright 2019 The go-beats Authors
-// This file is part of the go-beats library.
+// Copyright 2019 The go-Beats Authors
+// This file is part of the go-Beats library.
 //
-// The go-beats library is free software: you can redistribute it and/or modify
+// The go-Beats library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-beats library is distributed in the hope that it will be useful,
+// The go-Beats library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-beats library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-Beats library. If not, see <http://www.gnu.org/licenses/>.
 
 package les
 
@@ -108,12 +108,12 @@ func (h *clientHandler) handle(p *serverPeer, noInitAnnounce bool) error {
 	if h.backend.peers.len() >= h.backend.config.LightPeers && !p.Peer.Info().Network.Trusted {
 		return p2p.DiscTooManyPeers
 	}
-	p.Log().Debug("Light beats peer connected", "name", p.Name())
+	p.Log().Debug("Light Beats peer connected", "name", p.Name())
 
 	// Execute the LES handshake
 	forkid := forkid.NewID(h.backend.blockchain.Config(), h.backend.genesis, h.backend.blockchain.CurrentHeader().Number.Uint64())
 	if err := p.Handshake(h.backend.blockchain.Genesis().Hash(), forkid, h.forkFilter); err != nil {
-		p.Log().Debug("Light beats handshake failed", "err", err)
+		p.Log().Debug("Light Beats handshake failed", "err", err)
 		return err
 	}
 	// Register peer with the server pool
@@ -131,7 +131,7 @@ func (h *clientHandler) handle(p *serverPeer, noInitAnnounce bool) error {
 	}
 	// Register the peer locally
 	if err := h.backend.peers.register(p); err != nil {
-		p.Log().Error("Light beats peer registration failed", "err", err)
+		p.Log().Error("Light Beats peer registration failed", "err", err)
 		return err
 	}
 
@@ -155,7 +155,7 @@ func (h *clientHandler) handle(p *serverPeer, noInitAnnounce bool) error {
 	// Spawn a main loop to handle all incoming messages.
 	for {
 		if err := h.handleMsg(p); err != nil {
-			p.Log().Debug("Light beats message handling failed", "err", err)
+			p.Log().Debug("Light Beats message handling failed", "err", err)
 			p.fcServer.DumpLogs()
 			return err
 		}
@@ -170,7 +170,7 @@ func (h *clientHandler) handleMsg(p *serverPeer) error {
 	if err != nil {
 		return err
 	}
-	p.Log().Trace("Light beats message arrived", "code", msg.Code, "bytes", msg.Size)
+	p.Log().Trace("Light Beats message arrived", "code", msg.Code, "bytes", msg.Size)
 
 	if msg.Size > ProtocolMaxMsgSize {
 		return errResp(ErrMsgTooLarge, "%v > %v", msg.Size, ProtocolMaxMsgSize)

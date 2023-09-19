@@ -1,18 +1,18 @@
-// Copyright 2021 The go-beats Authors
-// This file is part of the go-beats library.
+// Copyright 2021 The go-Beats Authors
+// This file is part of the go-Beats library.
 //
-// The go-beats library is free software: you can redistribute it and/or modify
+// The go-Beats library is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// The go-beats library is distributed in the hope that it will be useful,
+// The go-Beats library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the go-beats library. If not, see <http://www.gnu.org/licenses/>.
+// along with the go-Beats library. If not, see <http://www.gnu.org/licenses/>.
 
 // This file contains a miner stress test for eip 1559.
 package main
@@ -68,7 +68,7 @@ func main() {
 
 	var (
 		stacks []*node.Node
-		nodes  []*eth.beats
+		nodes  []*eth.Beats
 		enodes []*enode.Node
 	)
 	for i := 0; i < 4; i++ {
@@ -220,8 +220,8 @@ func makeGenesis(faucets []*ecdsa.PrivateKey) *core.Genesis {
 	return genesis
 }
 
-func makeMiner(genesis *core.Genesis) (*node.Node, *eth.beats, error) {
-	// Define the basic configurations for the beats node
+func makeMiner(genesis *core.Genesis) (*node.Node, *eth.Beats, error) {
+	// Define the basic configurations for the Beats node
 	datadir, _ := ioutil.TempDir("", "")
 
 	config := &node.Config{
@@ -235,7 +235,7 @@ func makeMiner(genesis *core.Genesis) (*node.Node, *eth.beats, error) {
 		},
 		UseLightweightKDF: true,
 	}
-	// Create the node and configure a full beats node on it
+	// Create the node and configure a full Beats node on it
 	stack, err := node.New(config)
 	if err != nil {
 		return nil, nil, err

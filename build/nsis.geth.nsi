@@ -29,9 +29,9 @@
 # - sign installer
 CRCCheck on
 
-!define GROUPNAME "beats"
+!define GROUPNAME "Beats"
 !define APPNAME "Geth"
-!define DESCRIPTION "Official Go implementation of the beats protocol"
+!define DESCRIPTION "Official Go implementation of the Beats protocol"
 !addplugindir .\
 
 # Require admin rights on NT6+ (When UAC is turned on)

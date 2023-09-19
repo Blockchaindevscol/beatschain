@@ -1,18 +1,18 @@
-// Copyright 2017 The go-beats Authors
-// This file is part of go-beats.
+// Copyright 2017 The go-Beats Authors
+// This file is part of go-Beats.
 //
-// go-beats is free software: you can redistribute it and/or modify
+// go-Beats is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-beats is distributed in the hope that it will be useful,
+// go-Beats is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-beats. If not, see <http://www.gnu.org/licenses/>.
+// along with go-Beats. If not, see <http://www.gnu.org/licenses/>.
 
 package main
 
@@ -32,7 +32,7 @@ import (
 )
 
 // alethGenesisSpec represents the genesis specification format used by the
-// C++ beats implementation.
+// C++ Beats implementation.
 type alethGenesisSpec struct {
 	SealEngine string `json:"sealEngine"`
 	Params     struct {
@@ -93,10 +93,10 @@ type alethGenesisSpecLinearPricing struct {
 	Word uint64 `json:"word"`
 }
 
-// newAlethGenesisSpec converts a go-beats genesis block into a Aleth-specific
+// newAlethGenesisSpec converts a go-Beats genesis block into a Aleth-specific
 // chain specification format.
 func newAlethGenesisSpec(network string, genesis *core.Genesis) (*alethGenesisSpec, error) {
-	// Only ethash is currently supported between go-beats and aleth
+	// Only ethash is currently supported between go-Beats and aleth
 	if genesis.Config.Ethash == nil {
 		return nil, errors.New("unsupported consensus engine")
 	}
@@ -275,7 +275,7 @@ type parityChainSpec struct {
 
 	Genesis struct {
 		Seal struct {
-			beats struct {
+			Beats struct {
 				Nonce   types.BlockNonce `json:"nonce"`
 				MixHash hexutil.Bytes    `json:"mixHash"`
 			} `json:"ethereum"`
@@ -361,10 +361,10 @@ type parityChainSpecVersionedPricing struct {
 	Info  string                           `json:"info,omitempty"`
 }
 
-// newParityChainSpec converts a go-beats genesis block into a Parity specific
+// newParityChainSpec converts a go-Beats genesis block into a Parity specific
 // chain specification format.
 func newParityChainSpec(network string, genesis *core.Genesis, bootnodes []string) (*parityChainSpec, error) {
-	// Only ethash is currently supported between go-beats and Parity
+	// Only ethash is currently supported between go-Beats and Parity
 	if genesis.Config.Ethash == nil {
 		return nil, errors.New("unsupported consensus engine")
 	}
@@ -424,8 +424,8 @@ func newParityChainSpec(network string, genesis *core.Genesis, bootnodes []strin
 	// Disable this one
 	spec.Params.EIP98Transition = math.MaxInt64
 
-	spec.Genesis.Seal.beats.Nonce = types.EncodeNonce(genesis.Nonce)
-	spec.Genesis.Seal.beats.MixHash = genesis.Mixhash[:]
+	spec.Genesis.Seal.Beats.Nonce = types.EncodeNonce(genesis.Nonce)
+	spec.Genesis.Seal.Beats.MixHash = genesis.Mixhash[:]
 	spec.Genesis.Difficulty = (*hexutil.Big)(genesis.Difficulty)
 	spec.Genesis.Author = genesis.Coinbase
 	spec.Genesis.Timestamp = (hexutil.Uint64)(genesis.Timestamp)
@@ -591,7 +591,7 @@ func (spec *parityChainSpec) setIstanbul(num *big.Int) {
 }
 
 // pyEthereumGenesisSpec represents the genesis specification format used by the
-// Python beats implementation.
+// Python Beats implementation.
 type pyEthereumGenesisSpec struct {
 	Nonce      types.BlockNonce  `json:"nonce"`
 	Timestamp  hexutil.Uint64    `json:"timestamp"`
@@ -604,10 +604,10 @@ type pyEthereumGenesisSpec struct {
 	ParentHash common.Hash       `json:"parentHash"`
 }
 
-// newPyEthereumGenesisSpec converts a go-beats genesis block into a Parity specific
+// newPyEthereumGenesisSpec converts a go-Beats genesis block into a Parity specific
 // chain specification format.
 func newPyEthereumGenesisSpec(network string, genesis *core.Genesis) (*pyEthereumGenesisSpec, error) {
-	// Only ethash is currently supported between go-beats and pyethereum
+	// Only ethash is currently supported between go-Beats and pyethereum
 	if genesis.Config.Ethash == nil {
 		return nil, errors.New("unsupported consensus engine")
 	}

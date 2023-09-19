@@ -33,7 +33,7 @@ message EthereumPublicKey {
 }
 
 /**
- * Request: Ask device for beats address corresponding to address_n path
+ * Request: Ask device for Beats address corresponding to address_n path
  * @start
  * @next EthereumAddress
  * @next Failure
@@ -44,12 +44,12 @@ message EthereumGetAddress {
 }
 
 /**
- * Response: Contains an beats address derived from device private seed
+ * Response: Contains an Beats address derived from device private seed
  * @end
  */
 message EthereumAddress {
-    optional bytes  addressBin = 1;    // beats address as 20 bytes (legacy firmwares)
-    optional string addressHex = 2;    // beats address as hex string (newer firmwares)
+    optional bytes  addressBin = 1;    // Beats address as 20 bytes (legacy firmwares)
+    optional string addressHex = 2;    // Beats address as hex string (newer firmwares)
 }
 
 /**

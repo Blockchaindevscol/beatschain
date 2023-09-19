@@ -1,18 +1,18 @@
-// Copyright 2017 The go-beats Authors
-// This file is part of go-beats.
+// Copyright 2017 The go-Beats Authors
+// This file is part of go-Beats.
 //
-// go-beats is free software: you can redistribute it and/or modify
+// go-Beats is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// go-beats is distributed in the hope that it will be useful,
+// go-Beats is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with go-beats. If not, see <http://www.gnu.org/licenses/>.
+// along with go-Beats. If not, see <http://www.gnu.org/licenses/>.
 
 package main
 
@@ -65,7 +65,7 @@ services:
             - VIRTUAL_HOST={{.VHost}}
             - VIRTUAL_PORT=4000{{end}}
         volumes:
-            - {{.Datadir}}:/opt/app/.beats
+            - {{.Datadir}}:/opt/app/.Beats
             - {{.DBDir}}:/var/lib/postgresql/data
         logging:
           driver: "json-file"
@@ -139,7 +139,7 @@ func (info *explorerInfos) Report() map[string]string {
 	report := map[string]string{
 		"Website address ":       info.host,
 		"Website listener port ": strconv.Itoa(info.port),
-		"beats listener port ":   strconv.Itoa(info.node.port),
+		"Beats listener port ":   strconv.Itoa(info.node.port),
 		"Ethstats username":      info.node.ethstats,
 	}
 	return report
@@ -182,7 +182,7 @@ func checkExplorer(client *sshClient, network string) (*explorerInfos, error) {
 	// Assemble and return the useful infos
 	stats := &explorerInfos{
 		node: &nodeInfos{
-			datadir:  infos.volumes["/opt/app/.beats"],
+			datadir:  infos.volumes["/opt/app/.Beats"],
 			port:     infos.portmap[infos.envvars["ETH_PORT"]+"/tcp"],
 			ethstats: infos.envvars["ETH_NAME"],
 		},

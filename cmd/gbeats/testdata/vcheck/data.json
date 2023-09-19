@@ -19,7 +19,7 @@
     "name": "GoCrash",
     "uid": "GETH-2020-02",
     "summary": "A denial-of-service issue can be used to crash gbeatsnodes during block processing, due to an underlying bug in Go (CVE-2020-28362) versions < `1.15.5`, or `<1.14.12`",
-    "description": "The DoS issue can be used to crash all gbeatsnodes during block processing, the effects of which would be that a major part of the beats network went offline.\n\nOutside of Go-beats, the issue is most likely relevant for all forks of gbeats(such as TurboGeth or ETC’s core-gbeats) which is built with versions of Go which contains the vulnerability.",
+    "description": "The DoS issue can be used to crash all gbeatsnodes during block processing, the effects of which would be that a major part of the Beats network went offline.\n\nOutside of Go-Beats, the issue is most likely relevant for all forks of gbeats(such as TurboGeth or ETC’s core-gbeats) which is built with versions of Go which contains the vulnerability.",
     "links": [
       "https://blogCryptoBeats.org/2020/11/12/geth_security_release/",
       "https://groups.google.com/g/golang-announce/c/NpBGTTmKzpM",

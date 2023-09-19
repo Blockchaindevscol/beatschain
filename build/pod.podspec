@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
   spec.authors      = { {{range .Contributors}}
 		'{{.Name}}' => '{{.Email}}',{{end}}
 	}
-  spec.summary      = 'iOS beats Client'
+  spec.summary      = 'iOS Beats Client'
   spec.source       = { :git => 'https://github.com/Blockchaindevscol/beatschain.git', :commit => '{{.Commit}}' }
 
 	spec.platform = :ios

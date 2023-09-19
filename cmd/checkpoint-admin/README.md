@@ -18,7 +18,7 @@ However, from a security perspective, the most critical step in a synchronizatio
 
 #### Hardcoded checkpoint
 
-There are several hardcoded checkpoints in the [source code](https://github.com/Blockchaindevscol/beatschain/blob/master/params/config.go#L38) of the go-beats project. These checkpoints are updated by go-beats developers when new versions of software are released. Because light client users trust gbeatsdevelopers to some extent, hardcoded checkpoints in the code can also be considered correct.
+There are several hardcoded checkpoints in the [source code](https://github.com/Blockchaindevscol/beatschain/blob/master/params/config.go#L38) of the go-Beats project. These checkpoints are updated by go-Beats developers when new versions of software are released. Because light client users trust gbeatsdevelopers to some extent, hardcoded checkpoints in the code can also be considered correct.
 
 #### Checkpoint oracle
 
@@ -86,7 +86,7 @@ checkpoint-admin status --rpc <NODE_RPC_ENDPOINT>
 
 ### Enable checkpoint oracle in your private network
 
-Currently, only the beats mainnet and the default supported test networks (ropsten, rinkeby, goerli) activate this feature. If you want to activate this feature in your private network, you can overwrite the relevant checkpoint oracle settings through the configuration file after deploying the oracle contract.
+Currently, only the Beats mainnet and the default supported test networks (ropsten, rinkeby, goerli) activate this feature. If you want to activate this feature in your private network, you can overwrite the relevant checkpoint oracle settings through the configuration file after deploying the oracle contract.
 
 * Get your node configuration file `gbeats dumpconfig OTHER_COMMAND_LINE_OPTIONS > config.toml`
 * Edit the configuration file and add the following information

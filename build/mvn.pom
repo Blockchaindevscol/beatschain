@@ -9,8 +9,8 @@
   <version>{{.Version}}</version>
   <packaging>aar</packaging>
 
-  <name>Android beats Client</name>
-  <description>Android port of the go-beats libraries and node</description>
+  <name>Android Beats Client</name>
+  <description>Android port of the go-Beats libraries and node</description>
   <url>https://github.com/Blockchaindevscol/beatschain</url>
   <inceptionYear>2015</inceptionYear>
 
@@ -23,7 +23,7 @@
   </licenses>
 
   <organization>
-    <name>beats</name>
+    <name>Beats</name>
     <url>https://ethereum.org</url>
   </organization>
 

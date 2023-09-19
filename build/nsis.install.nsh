@@ -29,9 +29,9 @@ Section "Geth" GETH_IDX
   SimpleFC::AdvRemoveRule "gbeatsUDP discovery (UDP:30305)"
 
   # Firewall - add rules
-  SimpleFC::AdvAddRule "gbeatsincoming peers (TCP:30305)" ""  6 1 1 2147483647 1 "$INSTDIR\gbeats.exe" "" "" "beats" 30305 "" "" ""
-  SimpleFC::AdvAddRule "gbeatsoutgoing peers (TCP:30305)" ""  6 2 1 2147483647 1 "$INSTDIR\gbeats.exe" "" "" "beats" "" 30305 "" ""
-  SimpleFC::AdvAddRule "gbeatsUDP discovery (UDP:30305)" "" 17 2 1 2147483647 1 "$INSTDIR\gbeats.exe" "" "" "beats" "" 30305 "" ""
+  SimpleFC::AdvAddRule "gbeatsincoming peers (TCP:30305)" ""  6 1 1 2147483647 1 "$INSTDIR\gbeats.exe" "" "" "Beats" 30305 "" "" ""
+  SimpleFC::AdvAddRule "gbeatsoutgoing peers (TCP:30305)" ""  6 2 1 2147483647 1 "$INSTDIR\gbeats.exe" "" "" "Beats" "" 30305 "" ""
+  SimpleFC::AdvAddRule "gbeatsUDP discovery (UDP:30305)" "" 17 2 1 2147483647 1 "$INSTDIR\gbeats.exe" "" "" "Beats" "" 30305 "" ""
 
   # Set default IPC endpoint (https://github.com/ethereum/EIPs/issues/147)
   ${EnvVarUpdate} $0 "ETHEREUM_SOCKET" "R" "HKLM" "\\.\pipe\gbeats.ipc"
